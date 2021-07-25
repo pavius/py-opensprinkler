@@ -76,3 +76,9 @@ class TestController:
 
         await controller.delete_program(0)
         assert len(controller.programs) == 0
+
+    @pytest.mark.asyncio
+    async def test_get_logs(self, controller):
+        await controller.refresh()
+        result = await controller.get_logs(30)
+        assert len(result) > 0

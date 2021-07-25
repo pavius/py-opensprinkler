@@ -45,7 +45,7 @@ from pyopensprinkler.station import Station
 
 
 def synchronized(lock):
-    """ Synchronization decorator """
+    """Synchronization decorator"""
 
     def wrap(f):
         @functools.wraps(f)
@@ -436,6 +436,11 @@ class Controller(object):
         """Delete program"""
         content = await self.request("/dp", {"pid": index})
         return content["result"]
+
+    async def get_logs(self, history_days):
+        """Get logs"""
+        content = await self.request("/jl", {"hist": history_days})
+        return content
 
     @property
     def last_refresh_time(self):
